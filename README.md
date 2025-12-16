@@ -59,11 +59,10 @@ BAIDU_FANYI_SECRET=              # 可选：百度翻译开放平台的密钥BAI
 # BAIDU_FANYI_SECRET            （可选）# BAIDU_FANYI_SECRET            (optional)
 ```
 
-## Notion Database 创建说明   ## Instructions for Creating a Notion Database
-
+## Notion Database 创建说明   
 1. 在 Notion 中创建一个 Database（表格视图即可），命名为 `Daily Brief`。  
 2. 确认存在以下属性（字段）：
-   - `Name   名字`：类型为 **Title   标题**（标题）
+   - `Name   名字`：类型为 **Title**  
    - `Date`：类型为 **Date**
    - `News Count`：类型为 **Number**
    - `GitHub Count`：类型为 **Number**
@@ -83,14 +82,14 @@ python main.py
 
 ## 定时执行示例
 
-### 使用 cron（Linux 服务器）   ### Using cron (Linux Server)Using cron (Linux Server)
+### 使用 cron（Linux 服务器）   
 
 示例：每天 UTC 08:00 执行：
 ```cron   “‘cron   “”cron的cron
 0 8 * * * cd /path/to/daily-brief && /usr/bin/python main.py >> /var/log/daily_brief.log 2>&1每晚 0 点 8 分，切换到 /path/to/daily-brief 目录，然后使用 /usr/bin/python 运行 main.py 脚本，并将输出重定向到 /var/log/daily_brief.log 文件中，同时将错误输出重定向到标准输出。At 0:08 every night, switch to the /path/to/daily-brief directory and run the main.py script using /usr/bin/python. Redirect the output to the /var/log/daily_brief.log file and also redirect the error output to the standard output.
 ```
 
-### 使用 GitHub Actions   ### Using GitHub Actions### 使用 GitHub Actions  ### 使用 GitHub 动作
+### 使用 GitHub Actions  
 
 ```yaml   “‘yaml
 name: Daily Brief   名称：每日简报Name: Daily BriefName: Daily Brief
@@ -129,6 +128,7 @@ jobs:   工作:
   - 请确认数据库中存在 `Date` 字段，并且类型为 Date。
 - **使用 cron / GitHub Actions 时脚本不退出**
   - 若只需要执行一次，请删除 `main.py` 中的 `schedule` 部分和死循环，只保留 `generate_daily_brief()` 调用。
+
 
 
 
