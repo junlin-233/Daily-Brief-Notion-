@@ -1,21 +1,32 @@
-name   名字: Daily Brief
-on:   :
-  schedule:   时间表:
-    - cron: "0 1 * * *"   # UTC 00:00，对应北京时间 08:00，可按需调整
-  workflow_dispatch:       # 允许手动触发
-jobs:   工作:
-  run:   运行:
-    runs-on: ubuntu-latest   运行于：ubuntu-latest
-    steps:   步骤:
-      - uses: actions/checkout@v4- 使用：actions/checkout@v4
-      - uses: actions/setup-python@v5- 使用：actions/setup-python@v5
-        with:   :
-          python-version: '3.11'   Python 版本：'3.1
-      - run: pip install -r requirements.txt运行：pip install -r requirements.txt
-      - run: python main.py   运行：python main.py
+name: Daily Brief
+
+on:
+  schedule:
+    # 每天 UTC 00:00 运行（对应北京时间 08:00）
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}  # 允许手动触发
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily brief
+        run: python main.py
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}NOTION_TOKEN：${{ secrets.NOTION_TOKEN }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}NOTION_DATABASE_ID：${{ secrets.NOTION_DATABASE_ID }}
-          GITHUB_TRENDING_API: ${{ secrets.GITHUB_TRENDING_API }}GITHUB_TRENDING_API：${{ secrets.GITHUB_TRENDING_API }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          GITHUB_TRENDING_API: ${{ secrets.GITHUB_TRENDING_API }}
           BAIDU_FANYI_APP_ID: ${{ secrets.BAIDU_FANYI_APP_ID }}
           BAIDU_FANYI_SECRET: ${{ secrets.BAIDU_FANYI_SECRET }}
