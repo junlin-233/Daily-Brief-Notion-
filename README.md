@@ -1,4 +1,4 @@
-# Daily Brief（Notion 自动日报）# Daily Brief (Notion Auto Daily Report)
+# Daily Brief（Notion 自动日报）
 
 这是一个使用 Python 编写的自动化脚本项目，每天在 Notion 中自动生成一页「Daily Brief」，内容包含：
 
@@ -129,6 +129,7 @@ jobs:   工作:
   - 请确认数据库中存在 `Date` 字段，并且类型为 Date。
 - **使用 cron / GitHub Actions 时脚本不退出**
   - 若只需要执行一次，请删除 `main.py` 中的 `schedule` 部分和死循环，只保留 `generate_daily_brief()` 调用。
+
 
 
 
