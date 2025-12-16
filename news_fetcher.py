@@ -9,7 +9,7 @@ from utils import logger, deduplicate_items, title_similarity
 
 # 三个国内 RSS 源，分别取 3、3、4 条组合成 10 条
 RSS_SOURCES = [
-    ("IT之家", "https://www.ithome.com/rss/"),  # 科技 / 数码
+    ("36kr", "https://rss.aishort.top/?type=36kr"),  # 科技 / 数码
     ("瓦斯", "https://rss.aishort.top/?type=wasi"),  # 创业 / 商业快讯
     ("百度", "https://rss.aishort.top/?type=baidu"),  # 时政 / 热点
 ]
@@ -112,4 +112,5 @@ def fetch_news(limit: int = 10) -> List[Dict]:
 
     # 最终截断为 limit 条
     return selected[:limit]
+
 
