@@ -10,7 +10,7 @@
 ## 功能说明
 
 - 从 GitHub Trending（自定义 API 或直接抓取 github.com/trending）获取热门仓库。Fetch popular repositories from GitHub Trending (either through a custom API or by directly scraping github.com/trending).Fetch popular repositories from GitHub Trending (either through a custom API or by directly scraping github.com/trending). Fetch popular repositories from GitHub Trending (either through a custom API or by directly scraping github.com/trending).
-- 从多个国内 RSS 源获取新闻热点（当前默认：IT 之家 / 36氪快讯 / 观察者网，可按需替换）。
+- 从多个国内 RSS 源获取新闻热点。
 - 使用标题相似度做去重，只保留同一事件的一条。
 - 每天在 Notion 的 `Daily Brief` 数据库中**只创建一条**记录：Create only one record in the `Daily Brief` database of Notion every day:Create only one record in the `Daily Brief   日常简短` database of Notion every day:
   - 若当天已存在，则直接跳过，避免重复创建。
@@ -129,6 +129,7 @@ jobs:   工作:
   - 请确认数据库中存在 `Date` 字段，并且类型为 Date。
 - **使用 cron / GitHub Actions 时脚本不退出**
   - 若只需要执行一次，请删除 `main.py` 中的 `schedule` 部分和死循环，只保留 `generate_daily_brief()` 调用。
+
 
 
 
