@@ -38,15 +38,10 @@ def generate_daily_brief() -> None:
 
 
 def main() -> None:
-    # 立即执行一次（方便调试 / cron），并在 UTC 08:00 每日调度
     generate_daily_brief()
-    schedule.every().day.at("08:00").do(generate_daily_brief)
-    logger.info("调度器已启动，等待下一次执行。")
-    while True:
-        schedule.run_pending()
-        time.sleep(30)
 
 
 if __name__ == "__main__":
     main()
+
 
