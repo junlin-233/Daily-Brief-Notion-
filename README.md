@@ -43,20 +43,20 @@ cp .env.example .env  # Windows 请手动复制Copy `.env.example` to `.env`  # 
 ```
 然后在 `.env` 中填写：
 ```
-NOTION_TOKEN=secret_xxx          # Notion 集成的 TokenNOTION_TOKEN=secret_xxx  # Token for Notion integrationNOTION_TOKEN=secret_xxx  # Notion 集成的令牌
+NOTION_TOKEN=secret_xxx          # Notion 集成的 TokenNOTION_TOKEN=secret_xxx 
 NOTION_TOKEN=secret_xxx  # 用于 Notion 集成的令牌
-NOTION_DATABASE_ID=xxxx          # Daily Brief 数据库 IDNOTION_DATABASE_ID=xxxx          # ID of the Daily Brief databaseNOTION_DATABASE_ID=xxxx          # 每日简报数据库 ID
+NOTION_DATABASE_ID=xxxx          # Daily Brief 数据库 IDNOTION_DATABASE_ID=xxxx         
 NOTION_DATABASE_ID=xxxx          # Daily Brief 数据库的 ID
-GITHUB_TRENDING_API=             # 可选：配置国内的 GitHub Trending 代理 API，留空则直接抓取 github.com/trendingGITHUB_TRENDING_API=             # Optional: Configure a domestic proxy API for GitHub Trending. Leave it blank to directly fetch from github.com/trending.GITHUB_TRENDING_API=             # Optional: Configure a domestic proxy API for GitHub Trending. Leave it blank to directly fetch from github.com/trending.
-BAIDU_FANYI_APP_ID=              # 可选：百度翻译开放平台的 APP ID（用于翻译 GitHub 描述）BAIDU_FANYI_APP_ID=              # Optional: APP ID of Baidu Translation Open Platform (used for translating GitHub descriptions)BAIDU_FANYI_APP_ID=              # Optional: APP ID of Baidu Translation Open Platform (used for translating GitHub descriptions)BAIDU_FANYI_APP_ID=              # Optional: APP ID of Baidu Translation Open Platform (used for translating GitHub descriptions)
-BAIDU_FANYI_SECRET=              # 可选：百度翻译开放平台的密钥BAIDU_FANYI_SECRET=              # Optional: Secret key of Baidu Translation Open Platform
+GITHUB_TRENDING_API=             # 可选：配置国内的 GitHub Trending 代理 API，留空则直接抓取 github.com/trendingGITHUB_TRENDING_API=           
+BAIDU_FANYI_APP_ID=              # 可选：百度翻译开放平台的 APP ID（用于翻译 GitHub 描述）BAIDU_FANYI_APP_ID=              
+BAIDU_FANYI_SECRET=              # 可选：百度翻译开放平台的密钥BAIDU_FANYI_SECRET=              
 
 # GitHub Actions 运行时请在仓库 Secrets 中配置：When running GitHub Actions, please configure the following in the repository's Secrets:
 # NOTION_TOKEN
 # NOTION_DATABASE_ID   # NOTION 数据库 ID
 # GITHUB_TRENDING_API           （可选）# GITHUB_TRENDING_API (Optional)
 # BAIDU_FANYI_APP_ID            （可选）# BAIDU_FANYI_APP_ID (Optional)
-# BAIDU_FANYI_SECRET            （可选）# BAIDU_FANYI_SECRET            (optional)
+# BAIDU_FANYI_SECRET            （可选）# BAIDU_FANYI_SECRET (optional)
 ```
 
 ## Notion Database 创建说明   
@@ -75,10 +75,7 @@ python main.py
 ```
 脚本启动后会：
 
-- 立即执行一次「生成今日 Daily Brief」；
-- 然后使用 `schedule` 在 **每天 UTC 时间 08:00** 再自动执行一次。
-
-如果你只打算用 cron / GitHub Actions 调用一次，可以把 `main.py` 中的循环改为只调用 `generate_daily_brief()` 一次后退出。
+立即执行一次「生成今日 Daily Brief」；
 
 ## 定时执行示例
 
@@ -126,8 +123,8 @@ jobs:   工作:
   - 可能是 IT 之家 RSS 源暂时不可用，可以稍后再试，或在 `news_fetcher.py` 中把 `RSS_URL` 换成你常用资讯站的 RSS 地址。
 - **出现多条当天页面**
   - 请确认数据库中存在 `Date` 字段，并且类型为 Date。
-- **使用 cron / GitHub Actions 时脚本不退出**
-  - 若只需要执行一次，请删除 `main.py` 中的 `schedule` 部分和死循环，只保留 `generate_daily_brief()` 调用。
+
+
 
 
 
