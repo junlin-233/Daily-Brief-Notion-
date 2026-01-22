@@ -2,7 +2,7 @@ name: Daily Brief
 
 on:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "15 1 * * *"
   workflow_dispatch: {}  # 允许手动触发
 
 jobs:
