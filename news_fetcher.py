@@ -28,7 +28,10 @@ def _clean_text(text: str) -> str:
 )
 def _fetch_rss_request(url: str) -> requests.Response:
     """带重试的 HTTP 请求"""
-    resp = requests.get(url, timeout=config.request_timeout)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    resp = requests.get(url, headers=headers, timeout=config.request_timeout)
     resp.raise_for_status()
     return resp
 

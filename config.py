@@ -13,8 +13,11 @@ load_dotenv()
 
 
 def _get_env(key: str, default: str = "") -> str:
-    """获取环境变量，返回字符串"""
-    return os.getenv(key, default).strip()
+    """获取环境变量，返回字符串。如果变量为空或只包含空白，则使用默认值。"""
+    val = os.getenv(key, "")
+    if not val or not val.strip():
+        return default
+    return val.strip()
 
 
 def _get_env_int(key: str, default: int) -> int:
